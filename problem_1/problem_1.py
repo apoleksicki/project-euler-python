@@ -13,10 +13,4 @@ http://projecteuler.net/problem=1
 '''
 
 if __name__ == '__main__':
-    
-    acc = 0
-    for x in range(1000):
-        if x % 3 == 0 or x % 5 == 0:
-            acc += x
-    
-    print(acc)
+    print(reduce(lambda y, z: y + z, [x for x in range(1000) if x % 3 == 0 or x % 5 == 0]))
