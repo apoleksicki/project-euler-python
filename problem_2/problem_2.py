@@ -14,26 +14,24 @@ http://projecteuler.net/problem=2
 @author: Antek
 '''
 
+def update_values(current, prev, prev_prev):
+    return(prev + prev_prev, prev + prev_prev, prev)
+
+
 def fib():
     num = 0
     prev = 1
     prev_prev = 0
-    current = 0
+    current = 1
     while current <= 4000000:
-        print num
-        if num < 2:
-            yield num
-        else:
-            current = prev + prev_prev
-            prev_prev = prev
-            prev = current
-            while current % 2 == 1:
-                current = prev + prev_prev
-                prev_prev = prev
-                prev = current
-                num += 1
+        current, prev, prev_prev = update_values(current, prev, prev_prev)
+        while current % 2 == 1:
+            current, prev, prev_prev = update_values(current, prev, prev_prev)
+            num += 1
+        if current <= 4000000:
             yield current
         num += 1
 
 if __name__ == '__main__':
     print [x for x in fib()]
+    print reduce(lambda x, y: x + y, [x for x in fib()])
