@@ -18,20 +18,14 @@ def update_values(prev, prev_prev):
     return(prev + prev_prev, prev)
 
 
-def fib(n):
+def fib(maxval):
     num = 0
     prev = 1
     prev_prev = 0
-    while prev + prev_prev <= n:
-        if num == 0:
-            yield 0;
-        elif num == 1:
-            yield 1
-        else:
-            yield prev + prev_prev
-            prev, prev_prev = update_values(prev, prev_prev)
-        num += 1
+    while num < maxval:
+        yield num
+        num = prev + prev_prev
+        prev, prev_prev = update_values(prev, prev_prev)
 
 if __name__ == '__main__':
-    print [x for x in fib(4000000)]
     print reduce(lambda x, y: x + y, [x for x in fib(4000000) if x % 2 == 1])
