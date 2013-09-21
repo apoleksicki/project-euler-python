@@ -17,7 +17,6 @@ def prime_numbers(n, prev = None):
         numbers = prev + range(prev[-1] + 1, n)
     
     for number in numbers:
-        print number
         for multiply in range(number * 2, n + 1, number):
             if multiply in numbers:
                 numbers.remove(multiply)
@@ -37,4 +36,3 @@ if __name__ == '__main__':
     
     print 'result: %s' % first_n_prime_numbers(10001)[-1]
     
-    #print prime_numbers(100, [2, 3, 5, 7])
